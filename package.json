@@ -1,0 +1,43 @@
+{
+    "name": "z-index-manager",
+    "version": "1.0.0",
+    "description": "A utility library for managing z-index values in web applications",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "dist",
+        "README.md"
+    ],
+    "scripts": {
+        "build": "tsc",
+        "test": "jest",
+        "prepublishOnly": "npm run build",
+        "prepare": "npm run build"
+    },
+    "keywords": [
+        "z-index",
+        "css",
+        "frontend",
+        "utility"
+    ],
+    "author": "",
+    "license": "MIT",
+    "devDependencies": {
+        "@types/jest": "^29.5.14",
+        "@types/node": "^22.15.3",
+        "jest": "^29.0.0",
+        "ts-jest": "^29.0.0",
+        "typescript": "^5.0.0"
+    },
+    "peerDependencies": {
+        "typescript": ">=4.0.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/yourusername/z-index-manager.git"
+    },
+    "bugs": {
+        "url": "https://github.com/yourusername/z-index-manager/issues"
+    },
+    "homepage": "https://github.com/yourusername/z-index-manager#readme"
+}

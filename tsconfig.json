@@ -1,0 +1,8 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./packages/react-example" },
+    { "path": "./packages/core" },
+    { "path": "./packages/tailwind-extend" }
+  ]
+}

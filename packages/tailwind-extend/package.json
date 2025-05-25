@@ -1,0 +1,40 @@
+{
+    "name": "@z-index/tailwind-extend",
+    "version": "0.1.0",
+    "description": "Tailwind CSS plugin for managing z-index values",
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "tsc",
+        "prepublishOnly": "npm run build"
+    },
+    "dependencies": {
+        "@z-index/core": "^0.1.0"
+    },
+    "peerDependencies": {
+        "tailwindcss": "^3.0.0"
+    },
+    "keywords": [
+        "z-index",
+        "tailwindcss",
+        "css",
+        "typescript"
+    ],
+    "author": "SeonghoJin",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/SeonghoJin/z-index.git"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "devDependencies": {
+        "typescript": "~5.8.3"
+    }
+}
