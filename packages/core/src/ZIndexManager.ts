@@ -1,12 +1,22 @@
 import { ZIndexOptions, ZIndexNode, InferZIndex } from './types';
 
+function getMaxIndex(obj: any): number {
+    let max = typeof obj.index === 'number' ? obj.index : -Infinity;
+    for (const key in obj) {
+        if (key !== 'index' && typeof obj[key] === 'object') {
+            max = Math.max(max, getMaxIndex(obj[key]));
+        }
+    }
+    return max;
+}
+
 export function createZindex<T extends readonly ZIndexNode[]>(
     nodes: T,
     options: ZIndexOptions = {}
 ): InferZIndex<T> {
-    const base = options.base ?? 0;
     const result = {} as any;
     const names = new Set<string>();
+    let idx = undefined
 
     nodes.forEach((node) => {
         if (node.name === 'index') {
@@ -18,20 +28,26 @@ export function createZindex<T extends readonly ZIndexNode[]>(
         }
         names.add(node.name);
 
-        if (node.dangerouslyFixedIndex !== undefined) {
-            result[node.name] = { index: node.dangerouslyFixedIndex };
-            return;
-        }
+        const nodeResult: any = {};
 
-        const value = base + (node.relative ?? 0);
-        const nodeResult = { index: value };
+
+        nodeResult.index = (() => {
+            if (node.dangerouslyFixedIndex) {
+                return node.dangerouslyFixedIndex;
+            };
+
+            if (idx === undefined) {
+                return idx ??= (options.base ?? 0) + (node.relative ?? 1);
+            }
+
+            return (node.relative ?? 1) + idx;
+        })();
 
         if (node.children) {
-            const children = createZindex(node.children, { base: value + 1 });
-            Object.assign(nodeResult, children);
+            Object.assign(nodeResult, createZindex(node.children, { base: nodeResult.index }));
         }
-
         result[node.name] = nodeResult;
+        idx = node.dangerouslyFixedIndex ? idx : nodeResult.index;
     });
 
     return result;
