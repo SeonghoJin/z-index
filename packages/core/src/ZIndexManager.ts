@@ -27,7 +27,7 @@ export function createZindex<T extends readonly ZIndexNode[]>(
         const nodeResult = { index: value };
 
         if (node.children) {
-            const children = createZindex(node.children, { base: value });
+            const children = createZindex(node.children, { base: value + 1 });
             Object.assign(nodeResult, children);
         }
 
