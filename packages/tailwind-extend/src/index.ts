@@ -28,17 +28,17 @@ import { createZindex, ZIndexNode, ZIndexOptions } from '@z-index/core';
  * }
  * ```
  */
-export function extendZIndex(options: { config: readonly ZIndexNode[], base?: number }): Record<string, number> {
+export function extendZIndex(options: { config: readonly ZIndexNode[], base?: number }): Record<string, string> {
     const zIndexValues = createZindex(options.config, { base: options.base });
 
-    function flatten(obj: any, prefix = ''): Record<string, number> {
-        let res: Record<string, number> = {};
+    function flatten(obj: any, prefix = ''): Record<string, string> {
+        let res: Record<string, string> = {};
         for (const key in obj) {
             if (key === 'index') continue;
             if (typeof obj[key] === 'object' && obj[key] !== null) {
                 const className = prefix ? `${prefix}-${key}` : key;
                 if ('index' in obj[key]) {
-                    res[className] = Number(obj[key].index);
+                    res[className] = String(obj[key].index);
                 }
                 const children = { ...obj[key] };
                 delete children.index;
