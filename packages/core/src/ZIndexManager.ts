@@ -1,14 +1,5 @@
 import { ZIndexOptions, ZIndexNode, InferZIndex } from './types';
 
-function getMaxIndex(obj: any): number {
-    let max = typeof obj.index === 'number' ? obj.index : -Infinity;
-    for (const key in obj) {
-        if (key !== 'index' && typeof obj[key] === 'object') {
-            max = Math.max(max, getMaxIndex(obj[key]));
-        }
-    }
-    return max;
-}
 
 export function createZindex<T extends readonly ZIndexNode[]>(
     nodes: T,
