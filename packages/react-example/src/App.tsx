@@ -19,7 +19,7 @@ function App() {
       {showModal && (
         <>
           <div
-            className="fixed inset-0 bg-black bg-opacity-50 z-modal.overlay"
+            className="fixed inset-0 bg-black bg-opacity-50"
             onClick={() => setShowModal(false)}
           />
           <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-lg shadow-lg z-modal.content">

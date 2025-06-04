@@ -1,6 +1,10 @@
 {
     "name": "z-index-manager",
     "version": "1.0.0",
+    "private": true,
+    "workspaces": [
+        "packages/*"
+    ],
     "description": "A utility library for managing z-index values in web applications",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",

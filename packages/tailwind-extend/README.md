@@ -32,24 +32,19 @@ npm install @z-index/tailwind-extend @z-index/core
 1. `tailwind.config.js` 파일에 플러그인을 추가합니다:
 
 ```javascript
-import { createZIndex } from '@z-index/tailwind-extend';
+import { extendZIndex } from '@z-index/tailwind-extend';
 
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
-      zIndex: createZIndex({
+      zIndex: extendZIndex({
         config: [
           {
             name: 'modal',
-            children: [
-              { name: 'overlay' },
-              { name: 'content' },
-              { name: 'input' },
-            ],
+            children: [{ name: 'hi' }, { name: 'as' }],
           },
-          { name: 'tooltip' },
         ],
         base: 1000,
       }),
@@ -62,22 +57,16 @@ export default {
 2. Tailwind CSS 클래스에서 사용:
 
 ```html
-<!-- 모달 오버레이 -->
-<div class="z-modal-overlay">
-  <!-- 모달 컨텐츠 -->
-  <div class="z-modal-content">
-    <!-- 모달 입력 필드 -->
-    <input class="z-modal-input" />
-  </div>
+<!-- 모달 hi -->
+<div class="z-modal-hi">
+  <!-- 모달 as -->
+  <div class="z-modal-as">내용</div>
 </div>
-
-<!-- 툴팁 -->
-<div class="z-tooltip">툴팁 내용</div>
 ```
 
 ## API
 
-### createZIndex(options)
+### extendZIndex(options)
 
 Tailwind CSS의 z-index 테마를 확장하는 함수입니다.
 
@@ -91,6 +80,7 @@ Tailwind CSS의 z-index 테마를 확장하는 함수입니다.
 #### 반환값
 
 Tailwind CSS의 z-index 테마에 추가할 객체를 반환합니다.
+각 키는 `z-` 접두사가 붙은 클래스명이 됩니다.
 
 ## 의존성
 
