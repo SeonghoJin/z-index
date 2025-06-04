@@ -9,8 +9,6 @@ describe('createZindex', () => {
             { name: 'd', dangerouslyFixedIndex: -1 }
         ] as const, { base: 50 });
 
-        console.log(z);
-
         expect(z.a.index).toBe(51);
         expect(z.b.index).toBe(53);
         expect(z.c.index).toBe(56);
@@ -43,7 +41,6 @@ describe('createZindex', () => {
                 }]
             }
         ] as const, { base: 50 });
-        console.log(z);
 
         expect(z.a.index).toBe(51);
         expect(z.a.b.index).toBe(53);
@@ -94,6 +91,16 @@ describe('createZindex', () => {
         expect(z.a.index).toBe(1);
         expect(z.a.b.index).toBe(2);
         expect(z.a.b.c.index).toBe(3);
+    })
+
+    it('should handle nested children - 3', () => {
+        const z = createZindex([{
+            name: 'a',
+        }, { name: 'b' }, { name: 'c' }]);
+
+        expect(z.a.index).toBe(1);
+        expect(z.b.index).toBe(2);
+        expect(z.c.index).toBe(3);
     })
 
     it('should throw error when using "index" as node name', () => {

@@ -30,13 +30,16 @@ import { createZindex, ZIndexNode, ZIndexOptions } from '@z-index/core';
  */
 export function extendZIndex(options: { config: readonly ZIndexNode[], base?: number }): Record<string, number> {
     const zIndexValues = createZindex(options.config, { base: options.base });
-    // Tailwind CSS 클래스명 형식으로 변환
+
     function flatten(obj: any, prefix = ''): Record<string, number> {
         let res: Record<string, number> = {};
         for (const key in obj) {
-            if (typeof obj[key] === 'object' && obj[key] !== null && 'index' in obj[key]) {
+            if (key === 'index') continue;
+            if (typeof obj[key] === 'object' && obj[key] !== null) {
                 const className = prefix ? `${prefix}-${key}` : key;
-                res[`${className}`] = Number(obj[key].index);
+                if ('index' in obj[key]) {
+                    res[className] = Number(obj[key].index);
+                }
                 const children = { ...obj[key] };
                 delete children.index;
                 Object.assign(res, flatten(children, className));
@@ -44,5 +47,6 @@ export function extendZIndex(options: { config: readonly ZIndexNode[], base?: nu
         }
         return res;
     }
+
     return flatten(zIndexValues);
 } 

@@ -12,7 +12,6 @@
   "dependencies": {
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "@z-index/core": "workspace:*",
     "@z-index/tailwind-extend": "workspace:*"
   },
   "devDependencies": {
