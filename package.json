@@ -17,7 +17,8 @@
         "core": "pnpm --filter @z-index/core",
         "build": "pnpm -r build",
         "test": "pnpm -r test",
-        "prepublishOnly": "npm run build"
+        "prepublishOnly": "pnpm run build",
+        "publish": "pnpm -r publish"
     },
     "keywords": [
         "z-index",
