@@ -12,11 +12,11 @@ describe('extendZIndex', () => {
         });
 
         expect(result).toEqual({
-            'modal': 51,
-            'modal-backdrop': 52,
-            'modal-content': 53,
-            'tooltip': 52,
-            'dropdown': 1000
+            'modal': '51',
+            'modal-backdrop': '52',
+            'modal-content': '53',
+            'tooltip': '52',
+            'dropdown': '1000'
         });
     });
 
@@ -37,9 +37,9 @@ describe('extendZIndex', () => {
         });
 
         expect(result).toEqual({
-            'modal': 1001,
-            'modal-header': 1002,
-            'modal-header-close': 1003
+            'modal': '1001',
+            'modal-header': '1002',
+            'modal-header-close': '1003'
         });
     });
 
@@ -52,8 +52,8 @@ describe('extendZIndex', () => {
         });
 
         expect(result).toEqual({
-            'modal': -1,
-            'tooltip': 1000
+            'modal': '-1',
+            'tooltip': '1000'
         });
     });
 }); 
