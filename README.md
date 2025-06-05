@@ -70,7 +70,26 @@ z-index 값을 체계적으로 관리하기 위한 TypeScript 패키지 모음�
 z-index 값을 체계적으로 관리하기 위한 핵심 기능을 제공하는 패키지입니다.
 
 ```bash
-npm install @z-index/core
+pnpm add @z-index/core
+```
+
+```typescript
+import { createZindex } from '@z-index/core';
+
+const z = createZindex(
+  [
+    { name: 'a', relative: 1 },
+    { name: 'b', relative: 2 },
+    { name: 'c', relative: 3 },
+    { name: 'd', dangerouslyFixedIndex: -1 },
+  ] as const,
+  { base: 50 }
+);
+
+console.log(z.a.index); // 51
+console.log(z.b.index); // 53
+console.log(z.c.index); // 56
+console.log(z.d.index); // -1
 ```
 
 [자세한 문서 보기](./packages/core/README.md)
@@ -80,7 +99,29 @@ npm install @z-index/core
 Tailwind CSS에서 z-index 값을 체계적으로 관리할 수 있게 해주는 플러그인입니다.
 
 ```bash
-npm install @z-index/tailwind-extend @z-index/core
+pnpm add @z-index/tailwind-extend @z-index/core
+```
+
+```typescript
+import { extendZIndex } from '@z-index/tailwind-extend';
+
+const zIndexConfig = extendZIndex({
+  config: [
+    { name: 'modal', children: [{ name: 'backdrop' }, { name: 'content' }] },
+    { name: 'tooltip' },
+    { name: 'dropdown', dangerouslyFixedIndex: 1000 },
+  ],
+  base: 50,
+});
+
+// tailwind.config.js
+export default {
+  theme: {
+    extend: {
+      zIndex: zIndexConfig,
+    },
+  },
+};
 ```
 
 [자세한 문서 보기](./packages/tailwind-extend/README.md)
@@ -90,19 +131,19 @@ npm install @z-index/tailwind-extend @z-index/core
 ### 설치
 
 ```bash
-npm install
+pnpm install
 ```
 
 ### 빌드
 
 ```bash
-npm run build
+pnpm build
 ```
 
 ### 테스트
 
 ```bash
-npm test
+pnpm test
 ```
 
 ## 라이선스
