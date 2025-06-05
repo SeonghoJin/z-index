@@ -1,4 +1,4 @@
-import { createZindex, ZIndexNode, ZIndexOptions } from '@z-index/core';
+import { createZindex, ZIndexNode } from '@z-index/core';
 
 
 /**

@@ -7,7 +7,7 @@ export function createZindex<T extends readonly ZIndexNode[]>(
 ): InferZIndex<T> {
     const result = {} as any;
     const names = new Set<string>();
-    let idx = undefined
+    let idx: number | undefined = undefined;
 
     nodes.forEach((node) => {
         if (node.name === 'index') {
