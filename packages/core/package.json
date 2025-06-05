@@ -1,6 +1,6 @@
 {
     "name": "@z-index/core",
-    "version": "1.0.2",
+    "version": "1.1.0",
     "type": "module",
     "private": false,
     "description": "Core functionality for managing z-index values",

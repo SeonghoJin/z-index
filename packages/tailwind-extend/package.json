@@ -1,6 +1,6 @@
 {
     "name": "@z-index/tailwind-extend",
-    "version": "1.0.3",
+    "version": "1.1.0",
     "type": "module",
     "private": false,
     "description": "Tailwind CSS plugin for managing z-index values",
