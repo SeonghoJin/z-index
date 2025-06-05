@@ -1,11 +1,11 @@
 {
-    "name": "z-index-manager",
+    "name": "z-index",
     "version": "1.0.0",
     "private": true,
     "workspaces": [
         "packages/*"
     ],
-    "description": "A utility library for managing z-index values in web applications",
+    "description": "z-index 값을 체계적으로 관리하기 위한 TypeScript 패키지 모음입니다.",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "files": [
@@ -42,7 +42,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/yourusername/z-index-manager.git"
+        "url": "https://github.com/SeonghoJin/z-index"
     },
     "bugs": {
         "url": "https://github.com/yourusername/z-index-manager/issues"
