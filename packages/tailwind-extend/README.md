@@ -24,63 +24,93 @@ Tailwind CSS에서 z-index 값을 체계적으로 관리할 수 있게 해주는
 ## 설치
 
 ```bash
-npm install @z-index/tailwind-extend @z-index/core
+pnpm add @z-index/tailwind-extend @z-index/core
 ```
 
 ## 사용 방법
 
-1. `tailwind.config.js` 파일에 플러그인을 추가합니다:
+### Tailwind CSS v4 이상
 
-```javascript
+Tailwind CSS v4부터는 CSS 파일에서 `@config` 지시문을 사용하여 설정을 로드해야 합니다.
+
+```css
+/* app.css */
+@config "./tailwind.config.js";
+```
+
+```typescript
+// tailwind.config.js
 import { extendZIndex } from '@z-index/tailwind-extend';
 
-/** @type {import('tailwindcss').Config} */
+const zIndexConfig = extendZIndex({
+  config: [
+    { name: 'modal', children: [{ name: 'backdrop' }, { name: 'content' }] },
+    { name: 'tooltip' },
+    { name: 'dropdown', dangerouslyFixedIndex: 1000 },
+  ],
+  base: 50,
+});
+
 export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
-      zIndex: extendZIndex({
-        config: [
-          {
-            name: 'modal',
-            children: [{ name: 'hi' }, { name: 'as' }],
-          },
-        ],
-        base: 1000,
-      }),
+      zIndex: zIndexConfig,
     },
   },
-  plugins: [],
 };
 ```
 
-2. Tailwind CSS 클래스에서 사용:
+### Tailwind CSS v3 이하
+
+```typescript
+// tailwind.config.js
+import { extendZIndex } from '@z-index/tailwind-extend';
+
+const zIndexConfig = extendZIndex({
+  config: [
+    { name: 'modal', children: [{ name: 'backdrop' }, { name: 'content' }] },
+    { name: 'tooltip' },
+    { name: 'dropdown', dangerouslyFixedIndex: 1000 },
+  ],
+  base: 50,
+});
+
+export default {
+  theme: {
+    extend: {
+      zIndex: zIndexConfig,
+    },
+  },
+};
+```
+
+## 사용 예시
 
 ```html
-<!-- 모달 hi -->
-<div class="z-modal-hi">
-  <!-- 모달 as -->
-  <div class="z-modal-as">내용</div>
-</div>
+<div class="z-modal">모달</div>
+<div class="z-modal-backdrop">모달 배경</div>
+<div class="z-tooltip">툴팁</div>
+<div class="z-dropdown">드롭다운</div>
 ```
 
 ## API
 
-### extendZIndex(options)
+### extendZIndex
 
-Tailwind CSS의 z-index 테마를 확장하는 함수입니다.
+```typescript
+function extendZIndex(options: {
+  config: ZIndexConfig[];
+  base?: number;
+}): Record<string, number>;
+```
 
 #### 옵션
 
-- `config`: z-index 구조를 정의하는 배열
+- `config`: z-index 설정 배열
   - `name`: z-index 이름
-  - `children`: 하위 z-index 구조 (선택사항)
+  - `children`: 하위 z-index 설정 배열 (선택사항)
+  - `dangerouslyFixedIndex`: 고정된 z-index 값 (선택사항)
 - `base`: 기본 z-index 값 (기본값: 0)
-
-#### 반환값
-
-Tailwind CSS의 z-index 테마에 추가할 객체를 반환합니다.
-각 키는 `z-` 접두사가 붙은 클래스명이 됩니다.
 
 ## 의존성
 

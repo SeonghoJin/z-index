@@ -27,7 +27,7 @@ function App() {
             <p className="mb-4">모달 내용입니다.</p>
             <input
               type="text"
-              className="w-full p-2 border rounded z-modal-content z-mo"
+              className="w-full p-2 border rounded z-modal-content"
               placeholder="입력해주세요"
             />
             <button
