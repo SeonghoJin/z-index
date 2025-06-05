@@ -1,8 +1,9 @@
 {
     "name": "@z-index/core",
     "version": "1.0.2",
-    "description": "Core functionality for managing z-index values",
     "type": "module",
+    "private": false,
+    "description": "Core functionality for managing z-index values",
     "main": "dist/index.js",
     "module": "dist/index.esm.js",
     "types": "dist/index.d.ts",
