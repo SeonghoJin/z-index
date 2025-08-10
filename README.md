@@ -83,7 +83,17 @@ Tailwind CSS에서 z-index 값을 체계적으로 관리할 수 있게 해주는
 pnpm add @z-index/tailwind-extend @z-index/core
 ```
 
+### Tailwind CSS v4 이상
+
+Tailwind CSS v4부터는 CSS 파일에서 `@config` 지시문을 사용하여 설정을 로드해야 합니다.
+
+```css
+/* app.css */
+@config "./tailwind.config.js";
+```
+
 ```typescript
+// tailwind.config.js
 import { extendZIndex } from '@z-index/tailwind-extend';
 
 const zIndexConfig = extendZIndex({
@@ -95,7 +105,6 @@ const zIndexConfig = extendZIndex({
   base: 50,
 });
 
-// tailwind.config.js
 export default {
   theme: {
     extend: {
@@ -105,7 +114,29 @@ export default {
 };
 ```
 
-[자세한 문서 보기](./packages/tailwind-extend/README.md)
+### Tailwind CSS v3 이하
+
+```typescript
+// tailwind.config.js
+import { extendZIndex } from '@z-index/tailwind-extend';
+
+const zIndexConfig = extendZIndex({
+  config: [
+    { name: 'modal', children: [{ name: 'backdrop' }, { name: 'content' }] },
+    { name: 'tooltip' },
+    { name: 'dropdown', dangerouslyFixedIndex: 1000 },
+  ],
+  base: 50,
+});
+
+export default {
+  theme: {
+    extend: {
+      zIndex: zIndexConfig,
+    },
+  },
+};
+```
 
 ## 개발
 
