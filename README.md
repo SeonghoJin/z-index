@@ -138,6 +138,16 @@ export default {
 };
 ```
 
+## 사용 예시
+
+```html
+<div class="z-modal">모달</div>
+<div class="z-modal-backdrop">모달 배경</div>
+<div class="z-tooltip">툴팁</div>
+<div class="z-dropdown">드롭다운</div>
+```
+
+
 ## 개발
 
 ### 설치
